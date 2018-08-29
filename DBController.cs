@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class DBController : MonoBehaviour
 {
-
-	[SerializeField] public Transform[] Bones;
-	[SerializeField, Range(0f, 1f)] public float Damping, Elasticity, Stiffness, Inert;
+	public Transform[] Bones;
+	[Range(0f, 1f)] public float Damping, Elasticity, Stiffness, Inert;
+	public float Radius;
+	public AnimationCurve DanpingDistrib, ElasticityDistrib, StiffnessDistrib, InertDistrib, RadiusDistrib;
 
 	// Use this for initialization
 	void OnValidate() {
@@ -33,6 +34,12 @@ public class DBController : MonoBehaviour
 			dynamicBone.m_Elasticity = Elasticity;
 			dynamicBone.m_Stiffness = Stiffness;
 			dynamicBone.m_Inert = Inert;
+			dynamicBone.m_Radius = Radius;
+			dynamicBone.m_DampingDistrib = DanpingDistrib;
+			dynamicBone.m_ElasticityDistrib = ElasticityDistrib;
+			dynamicBone.m_StiffnessDistrib = StiffnessDistrib;
+			dynamicBone.m_InertDistrib = InertDistrib;
+			dynamicBone.m_RadiusDistrib = RadiusDistrib;
 		}
 	}
 }

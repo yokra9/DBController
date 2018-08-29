@@ -8,8 +8,8 @@ public class DBController : MonoBehaviour
 	[Range(0f, 1f)] public float Damping, Elasticity, Stiffness, Inert;
 	public float Radius;
 	public AnimationCurve DanpingDistrib, ElasticityDistrib, StiffnessDistrib, InertDistrib, RadiusDistrib;
-	// 29行目と63行目のコメントアウトを解除することでコライダーの設定にも対応します
-	public List<DynamicBoneColliderBase> Colliders;
+	// 12行目と29行目と63行目のコメントアウトを解除することでコライダーの設定にも対応します
+// 	public List<DynamicBoneColliderBase> Colliders;
 
 	// Use this for initialization
 	void Reset()

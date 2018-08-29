@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class DBController : MonoBehaviour
 	[Range(0f, 1f)] public float Damping, Elasticity, Stiffness, Inert;
 	public float Radius;
 	public AnimationCurve DanpingDistrib, ElasticityDistrib, StiffnessDistrib, InertDistrib, RadiusDistrib;
+	// 29行目と63行目のコメントアウトを解除することでコライダーの設定にも対応します
+	public List<DynamicBoneColliderBase> Colliders;
 
 	// Use this for initialization
 	void Reset()
@@ -23,6 +26,7 @@ public class DBController : MonoBehaviour
 		StiffnessDistrib = db.m_StiffnessDistrib;
 		InertDistrib = db.m_InertDistrib;
 		RadiusDistrib = db.m_RadiusDistrib;
+//		Colliders = db.m_Colliders;
 	}
 
 	void OnValidate() {
@@ -56,6 +60,7 @@ public class DBController : MonoBehaviour
 			dynamicBone.m_StiffnessDistrib = StiffnessDistrib;
 			dynamicBone.m_InertDistrib = InertDistrib;
 			dynamicBone.m_RadiusDistrib = RadiusDistrib;
+//			dynamicBone.m_Colliders = Colliders;
 		}
 	}
 }

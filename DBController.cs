@@ -9,6 +9,22 @@ public class DBController : MonoBehaviour
 	public AnimationCurve DanpingDistrib, ElasticityDistrib, StiffnessDistrib, InertDistrib, RadiusDistrib;
 
 	// Use this for initialization
+	void Reset()
+	{
+		var db = GetComponent<DynamicBone>();
+		if (!db) return;
+		Damping = db.m_Damping;
+		Elasticity = db.m_Elasticity;
+		Stiffness = db.m_Stiffness;
+		Inert = db.m_Inert;
+		Radius = db.m_Radius;
+		DanpingDistrib = db.m_DampingDistrib;
+		ElasticityDistrib = db.m_ElasticityDistrib;
+		StiffnessDistrib = db.m_StiffnessDistrib;
+		InertDistrib = db.m_InertDistrib;
+		RadiusDistrib = db.m_RadiusDistrib;
+	}
+
 	void OnValidate() {
 		var dbs = GetComponents<DynamicBone>();
 		

@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class DBController : MonoBehaviour
 {
-	
-	private float _timeleft;
 
 	[SerializeField] public Transform[] Bones;
 	[SerializeField, Range(0f, 1f)] public float Damping, Elasticity, Stiffness, Inert;

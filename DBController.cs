@@ -6,16 +6,30 @@ public class DBController : MonoBehaviour
 {
 	public Transform[] Bones;
 	[Range(0f, 1f)] public float Damping, Elasticity, Stiffness, Inert;
-	public float Radius;
+	public float UpdateRate, Radius;
 	public AnimationCurve DanpingDistrib, ElasticityDistrib, StiffnessDistrib, InertDistrib, RadiusDistrib;
 	public bool UseColliderSettings;
+	public enum FreezeAxis
+	{
+		None, X, Y, Z
+	}
+	public FreezeAxis m_FreezeAxis = FreezeAxis.None;
 	public List<DynamicBoneColliderBase> Colliders;
-
+	public enum UpdateMode
+	{
+		Normal,
+		AnimatePhysics,
+		UnscaledTime,
+		Default
+	}
+	public UpdateMode m_UpdateMode = UpdateMode.Default;
+	
 	// Use this for initialization
 	void Reset()
 	{
 		var db = GetComponent<DynamicBone>();
 		if (!db) return;
+		UpdateRate = db.m_UpdateRate;
 		Damping = db.m_Damping;
 		Elasticity = db.m_Elasticity;
 		Stiffness = db.m_Stiffness;
@@ -50,6 +64,7 @@ public class DBController : MonoBehaviour
 		
 		foreach (var dynamicBone in dbs)
 		{
+			dynamicBone.m_UpdateRate = UpdateRate;
 			dynamicBone.m_Damping = Damping;
 			dynamicBone.m_Elasticity = Elasticity;
 			dynamicBone.m_Stiffness = Stiffness;
@@ -60,7 +75,38 @@ public class DBController : MonoBehaviour
 			dynamicBone.m_StiffnessDistrib = StiffnessDistrib;
 			dynamicBone.m_InertDistrib = InertDistrib;
 			dynamicBone.m_RadiusDistrib = RadiusDistrib;
+			
 			if (UseColliderSettings) dynamicBone.m_Colliders = Colliders;
+			
+			switch(m_FreezeAxis){
+				case FreezeAxis.X:
+					dynamicBone.m_FreezeAxis = DynamicBone.FreezeAxis.X;
+					break;
+				case FreezeAxis.Y:
+					dynamicBone.m_FreezeAxis = DynamicBone.FreezeAxis.Y;
+					break;
+				case FreezeAxis.Z:
+					dynamicBone.m_FreezeAxis = DynamicBone.FreezeAxis.Z;
+					break;
+				case FreezeAxis.None:
+					dynamicBone.m_FreezeAxis = DynamicBone.FreezeAxis.None;
+					break;
+			}
+			
+			switch(m_UpdateMode){
+				case UpdateMode.Normal:
+					dynamicBone.m_UpdateMode = DynamicBone.UpdateMode.Normal;
+					break;
+				case UpdateMode.AnimatePhysics:
+					dynamicBone.m_UpdateMode = DynamicBone.UpdateMode.AnimatePhysics;
+					break;
+				case UpdateMode.UnscaledTime:
+					dynamicBone.m_UpdateMode = DynamicBone.UpdateMode.UnscaledTime;
+					break;
+				case UpdateMode.Default:
+					dynamicBone.m_UpdateMode = DynamicBone.UpdateMode.Default;
+					break;
+			}
 		}
 	}
 }

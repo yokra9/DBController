@@ -26,8 +26,8 @@ public class DBController : MonoBehaviour
     public AnimationCurve FrictionDistrib;
     public float Radius;
     public AnimationCurve RadiusDistrib;
-	public float EndLength;
-	public Vector3 EndOffset, Gravity, Force;     
+    public float EndLength;
+    public Vector3 EndOffset, Gravity, Force;     
     public bool UseColliderSettings;
     public List<DynamicBoneColliderBase> Colliders;
     public List<Transform> Exclusions;
@@ -61,12 +61,12 @@ public class DBController : MonoBehaviour
         DistantDisable = db.m_DistantDisable;
         DistanceToObject = db.m_DistanceToObject;
         Exclusions = db.m_Exclusions;
-		ReferenceObject = db.m_ReferenceObject;
-		EndOffset = db.m_EndOffset;
-		Gravity = db.m_Gravity;
-		Force = db.m_Force;
-		EndLength = db.m_EndLength;
-		
+        ReferenceObject = db.m_ReferenceObject;
+        EndOffset = db.m_EndOffset;
+        Gravity = db.m_Gravity;
+        Force = db.m_Force;
+        EndLength = db.m_EndLength;
+        
         if (UseColliderSettings) Colliders = db.m_Colliders;
     }
 
